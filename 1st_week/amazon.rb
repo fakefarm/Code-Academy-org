@@ -12,24 +12,30 @@ shopping_cart = [
   {:name => "MacBook Air 13", :price => 1299, :quantity => 1}
   ]
   
-sales_tax = {"IL" => 0.115, "IN" => 0.09, "MI" => 0.06, "WI" => 0.056}
+sales_tax = {
+	"IL" => 0.115, 
+	"IN" => 0.09, 
+	"MI" => 0.06, 
+	"WI" => 0.056
+	}
 
 params = {
-  :name => "Patrick McProgrammerson",
+  :name 		=> "Patrick McProgrammerson",
   :address1 => "222 W. Merchandise Mart Plaza",
   :address2 => "12th Floor",
-  :city => "Chicago",
-  :state => "IL",
-  :zip => "60654"
+  :city 		=> "Chicago",
+  :state 		=> "IL",
+  :zip 			=> "60654"
   }
 
-def format_total
-	puts "Your total with tax is $#{}"
+cart_value = 0
+shopping_cart.each do |item|
+	cart_value += item[:price]  * item[:quantity] * (1 + sales_tax[params[:state]])
 end
+puts cart_value
 
-def total
-	format_total
-end  
+
+ 
 
 # Now change the value of the key :state in the params hash to "WI" and run your code again.
 
