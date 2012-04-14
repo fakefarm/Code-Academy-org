@@ -43,15 +43,12 @@ def cart_item_count(cart)
 	cart_quantity
 end
 
-def checkout(value)
-	puts "You have #{cart_quantity} items in your cart which total $#{cart_value}."
+def checkout(cart_qty, cart_val)
+	puts "You have #{cart_qty} items in your cart, which total $#{cart_val.round(2)}."
 end
 
 def tax(cust,tax_rate)
-	tax_rate[cust[:state]]
+	1 +	tax_rate[cust[:state]]
 end
 
-puts "Here are my tests..."
-
-puts value(shopping_cart, customer1, sales_tax)
-puts cart_item_count(shopping_cart)
+checkout(cart_item_count(shopping_cart), value(shopping_cart,customer1,sales_tax))
