@@ -15,7 +15,7 @@ sales_tax = {
 	"WI" => 0.056
 	}
 
-customer = {
+customer1 = {
   :name 		=> "Patrick McProgrammerson",
   :address1 => "222 W. Merchandise Mart Plaza",
   :address2 => "12th Floor",
@@ -24,19 +24,23 @@ customer = {
   :zip 			=> "60654"
   }
 
-def value(cart)
+def value(cart, customer, sales_tax)
 	cart_value = 0
 	
 	cart.each do |item|
-		cart_value += item[:price] * item[:quantity] * tax
+		cart_value += item[:price] * item[:quantity] * tax(customer, sales_tax)
 	end
 	
+	cart_value
+end
+
+def cart_item_count(cart)
 	cart_quantity = 0
+
 	cart.each do |item|
 		cart_quantity += item[:quantity]
 	end
-	
-	puts cart_quantity
+	cart_quantity
 end
 
 def checkout(value)
@@ -44,9 +48,10 @@ def checkout(value)
 end
 
 def tax(cust,tax_rate)
-	puts tax_rate[cust[:state]]
+	tax_rate[cust[:state]]
 end
 
 puts "Here are my tests..."
 
-
+puts value(shopping_cart, customer1, sales_tax)
+puts cart_item_count(shopping_cart)
