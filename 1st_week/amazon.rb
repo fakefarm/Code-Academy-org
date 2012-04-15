@@ -36,8 +36,7 @@ params = {
 	end
 	puts "Your total with tax is #{cart_value}."
 	puts ""
-=end	
-
+=end
 
 # Now change the value of the key :state in the params hash to "WI" and run your code again.
 # Done. 

@@ -35,12 +35,9 @@ def value(cart, customer, sales_tax)
 end
 
 def cart_item_count(cart)
-	cart_quantity = 0
-
-	cart.each do |item|
-		cart_quantity += item[:quantity]
+	cart.inject(0) do |memo, item|
+		memo + item[:quantity]
 	end
-	cart_quantity
 end
 
 def checkout(cart_qty, cart_val)
@@ -51,4 +48,6 @@ def tax(cust,tax_rate)
 	1 +	tax_rate[cust[:state]]
 end
 
-checkout(cart_item_count(shopping_cart), value(shopping_cart,customer1,sales_tax))
+cart_quantity = cart_item_count(shopping_cart)
+cart_value = value(shopping_cart, customer1, sales_tax)
+checkout(cart_quantity, cart_value)
